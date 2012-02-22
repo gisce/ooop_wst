@@ -49,3 +49,23 @@ class OOOP_WST(OOOP):
         else:
             return self.objectsock.execute(self.dbname, self.uid, self.pwd,
                                            model, *args)
+
+    def create(self, model, data):
+        """ create a new register """
+        return self.execute(model, 'create', data)
+
+    def unlink(self, model, ids):
+        """ remove register """
+        return self.execute(model, 'unlink', ids)
+
+    def write(self, model, ids, value):
+        """ update register """
+        return self.execute(model, 'write', ids, value)
+
+    def read(self, model, ids, fields=[]):
+        """ update register """
+        return self.execute(model, 'read', ids, fields)
+
+    def search(self, model, query):
+        """ return ids that match with 'query' """
+        return self.execute(model, 'search', query)
