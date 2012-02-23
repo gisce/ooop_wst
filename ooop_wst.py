@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 import xmlrpclib
 
 from ooop import OOOP
@@ -17,11 +18,11 @@ class OOOP_WST(OOOP):
                                                % (self.uri, self.port))
 
     def begin(self):
-        self.transaction_id = self.transsock.begin(self.dbname, self.uid,
-                                                   self.pwd)
+        tid = self.transsock.begin(self.dbname, self.uid, self.pwd)
         # Reloading modules for transaction
-        self.load_models()
-        return self.transaction_id
+        ooop_wst = copy.copy(self)
+        ooop_wst.transaction_id = tid
+        return ooop_wst
 
     def rollback(self):
         if self.transaction_id:
