@@ -22,6 +22,7 @@ class OOOP_WST(OOOP):
         # Reloading modules for transaction
         ooop_wst = copy.copy(self)
         ooop_wst.transaction_id = tid
+        ooop_wst.load_models()
         return ooop_wst
 
     def rollback(self):
